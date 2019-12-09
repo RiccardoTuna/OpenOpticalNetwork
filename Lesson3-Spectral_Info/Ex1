@@ -1,0 +1,28 @@
+# Exercise 1
+# Create the spectral information
+# 1. Create a json file with the following parameters (in fundamental units, Hz,
+# Baud, W):
+# 2. Import the json file. Hint: use the python library ’json’.
+# 3. Generate a spectral information.
+# Hint 1 : use the function create_input_spectral_information available in
+# the GNPy library. You can find create_input_spectral_information in
+# gnpy.core.info.
+# Hint 2 : This function requires, as input the following parameters: f min,
+# f max, roll off, baud rate, power, spacing. You can also use the python
+# function help to see the arguments of a function.
+
+import json as js
+import gnpy.core.info as gn
+import matplotlib.pyplot as plt
+import numpy as np
+import Mylib as ml
+
+# read json data from a file
+with open("Parameters.json", "r") as read_file:
+    data = js.load(read_file)
+
+si = gn.create_input_spectral_information(data['f min'], data['f max'], data['roll off'], data['baud rate'], data['power'], data['spacing'])
+
+ml.plot_spectrum(si)
+
+

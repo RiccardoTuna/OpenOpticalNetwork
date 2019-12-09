@@ -1,0 +1,8 @@
+{
+  "f min": 191.5e12,
+  "f max": 194.5e12,
+  "roll off": 0.2,
+  "baud rate": 32e9,
+  "power": 1e-3,
+  "spacing": 50e9
+}
