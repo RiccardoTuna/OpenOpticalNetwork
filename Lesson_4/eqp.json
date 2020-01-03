@@ -1,0 +1,66 @@
+{     "Edfa":[{
+            "type_variety": "simple_edfa",
+            "type_def": "fixed_gain",
+            "gain_flatmax": 50,
+            "gain_min": 0,
+            "p_max": 22,
+            "nf0": 5.5,
+            "allowed_for_design": false
+            }
+      ],
+      "Fiber":[
+      ],
+      "Span":[
+      ],
+      "Roadm":[{
+            "target_pch_out_db": -18,
+            "add_drop_osnr": 100,
+            "restrictions": {
+                            "preamp_variety_list":[],
+                            "booster_variety_list":[]
+                            }
+            }],
+      "SI":[{
+            "f_min": 191.30e12,
+            "baud_rate": 34e9,
+            "f_max":196.0e12,
+            "spacing": 50e9,
+            "power_dbm": -17,
+            "power_range_db": [0,0,1],
+            "roll_off": 0.15,
+            "tx_osnr": 80,
+            "sys_margins": 0
+            }],
+      "Transceiver":[
+            {
+            "type_variety": "vendorA_trx-type1",
+            "frequency":{
+                        "min": 191.35e12,
+                        "max": 196.0e12
+                        },
+            "mode":[
+                       {
+                       "format": "mode 1",
+                       "baud_rate": 32e9,
+                       "OSNR": 11,
+                       "bit_rate": 100e9,
+                       "roll_off": 0.15,
+                       "tx_osnr": 40,
+                       "min_spacing": 37.5e9,
+                       "cost":1
+                       },
+                       {
+                       "format": "mode 2",
+                       "baud_rate": 66e9,
+                       "OSNR": 15,
+                       "bit_rate": 200e9,
+                       "roll_off": 0.15,
+                       "tx_osnr": 40,
+                       "min_spacing": 75e9,
+                       "cost":1
+                       }
+                   ]
+            }
+      ]
+
+}
