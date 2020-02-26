@@ -23,7 +23,8 @@ data["params"]["gamma"] = 0.00127
 # new configurations.
 
 # B. Instantiate the EDFA from the JSON file.
-Edfa_par = ut.get_edfa_parameters("Amp_Parameters.json","/Users/Tuna/PycharmProjects/OpenOptical/Lesson_6/eqp.json") # Exercise 2: ../eqp2.json"
+Edfa_par = ut.get_edfa_parameters("Amp_Parameters.json",
+                                  "/Users/Tuna/PycharmProjects/OpenOptical/Lesson_6-OpticalLineSystems/eqp.json")
 
 num_span = 10
 line_system = [{}]*10
@@ -63,7 +64,7 @@ for i in range(0, len(line_system)):
 # 3. Use the transiever object to evaluate the GSNR and the OSNR of the
 # sectral information after each span.
 
-# Transiever
+# Transceiver
 # a. Import transceiver from gnpy.core.elements
 Receiver = gnel
 # b. instantiate it calling the constructor with the argument (uid=’receiver’).
@@ -86,15 +87,16 @@ for j in range(0, len(line_system)):
 # by span, for the channel 45.
 
 plt.figure(1)
-plt.plot(range(10), gsnr, '.r', range(10), osnr_ASE, '.g', range(10), osnr_NLI, '.b', label='line 1', linewidth=2)
+plt.plot(range(10), gsnr, 'ob', range(10), osnr_ASE, '*r', range(10), osnr_NLI, '.g', label='line 1', linewidth=2)
 plt.ylabel('OSNR')
 plt.xlabel('Span number')
 plt.legend(['GSNR', 'OSNR ASE', 'OSNR NLI'])
-plt.title('GSNR, OSNR, SNR_NLI - each span')
+plt.title('GSNR, OSNR, SNR_NLI - after each span - channel 45')
 plt.ylim((15, 40))
 plt.grid()
-plt.show()
 
 # 5. Plot the GSNR and the OSNR for each channel at the end of the line
 
 ml.plot_receiver(Rx_signal, si)
+
+plt.show()

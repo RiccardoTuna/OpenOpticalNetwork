@@ -28,13 +28,12 @@ def plot_spectrum(si):
     plt.legend(['Signal power', 'ASE power', 'NLI power'])
     plt.title('Spectral info')
     plt.grid()
-    plt.show()
 
 
 def plot_receiver(receiver, si):
 
     freq = np.zeros(len(si.carriers))
-    snr = receiver.snr
+    gsnr = receiver.snr
     osnr_ASE = receiver.osnr_ase
     osnr_NLI = receiver.osnr_nli
 
@@ -42,13 +41,12 @@ def plot_receiver(receiver, si):
         freq[i] = ch_i.frequency/1e12
 
     plt.figure()
-    plt.plot(freq, snr, '*b', freq, osnr_ASE, '.r', freq, osnr_NLI, '.g', label='line 1', linewidth=2)
-    plt.ylabel('OSNR [dB]')
+    plt.plot(freq, gsnr, 'ob', freq, osnr_ASE, '*r', freq, osnr_NLI, '.g', label='line 1', linewidth=2)
+    plt.ylabel('SNR [dB]')
     plt.xlabel('frequency [THz]')
-    plt.legend(['SNR', 'OSNR ASE', 'OSNR NLI'])
-    plt.title('Receiver')
+    plt.legend(['GSNR', 'OSNR ASE', 'OSNR NLI'])
+    plt.title('Signal-to-Noise Ratio at the Receiver')
     plt.grid()
-    plt.show()
 
 
 def plot_signal_ASE(si):
@@ -69,7 +67,6 @@ def plot_signal_ASE(si):
     plt.legend(['Signal power', 'ASE power'])
     plt.title('Spectral info')
     plt.grid()
-    plt.show()
 
 def plot_signal_NLI(si):
     freq = np.zeros(len(si.carriers))
@@ -89,7 +86,6 @@ def plot_signal_NLI(si):
     plt.legend(['Signal power', 'ASE power'])
     plt.title('Spectral info')
     plt.grid()
-    plt.show()
 
 def plot_signal(si):
 
@@ -107,7 +103,6 @@ def plot_signal(si):
     plt.legend(['Signal power'])
     plt.title('Spectral info')
     plt.grid()
-    plt.show()
 
 def plot_OSNR(si):
 
@@ -125,12 +120,11 @@ def plot_OSNR(si):
 
     plt.figure()
     plt.plot(freq, OSNR, '.b', label='line 1', linewidth=2)
-    plt.ylabel('Power [dBm]')
+    plt.ylabel('OSNR [dB]')
     plt.xlabel('frequency [THz]')
     plt.legend(['OSNR'])
-    plt.title('Spectral info')
+    plt.title('Optical SNR (due to ASE)')
     plt.grid()
-    plt.show()
 
 def plot_SNR_NLI(si):
 
@@ -148,10 +142,9 @@ def plot_SNR_NLI(si):
 
     plt.figure()
     plt.plot(freq, SNR_nli, '.b', label='line 1', linewidth=2)
-    plt.ylabel('Power [dBm]')
+    plt.ylabel('SNR [dB]')
     plt.xlabel('frequency [THz]')
     plt.legend(['SNR_nli'])
-    plt.title('Spectral info')
+    plt.title('NLI SNR')
     plt.grid()
-    plt.show()
 

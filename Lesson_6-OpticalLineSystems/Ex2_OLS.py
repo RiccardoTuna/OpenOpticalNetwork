@@ -23,7 +23,8 @@ with open("Fiber_Parameters.json", "r") as read_file:
 #fiber = gnel.Fiber(**data)
 
 # B. Instantiate the EDFA from the JSON file.
-Edfa_par = ut.get_edfa_parameters("Amp_Parameters.json","/Users/Tuna/PycharmProjects/OpenOptical/Lesson_6/eqp.json") # Exercise 2: ../eqp2.json"
+Edfa_par = ut.get_edfa_parameters("Amp_Parameters.json",
+                                  "/Users/Tuna/PycharmProjects/OpenOptical/Lesson_6-OpticalLineSystems/eqp.json")
 #EDFA = gnel.Edfa(**Edfa_par)
 
 num_span = 10
@@ -42,7 +43,8 @@ with open("eqp.json", "r") as read_file:  # Exercise 2: ../eqp2.json"
 # From the json data, extract only the values needed for the spectral info (SI)
 si_data = data['SI'][0]
 # Compute the WDM for the interested Spectral info
-si = gn.create_input_spectral_information(si_data['f_min'], si_data['f_max'], si_data['roll_off'], si_data['baud_rate'], 10**(si_data['power_dbm']/10)/1000, si_data['spacing'])
+si = gn.create_input_spectral_information(si_data['f_min'], si_data['f_max'], si_data['roll_off'], si_data['baud_rate'],
+                                          10**(si_data['power_dbm']/10)/1000, si_data['spacing'])
 
 # 2. Propagate the spectral information through the all line elements, saving
 # the output signal information to each span.
@@ -59,10 +61,10 @@ for i in range(0, len(line_system)):
     si = amplified_si
     spectral_info_spans[i] = si
 
-ml.plot_signal(spectral_info_spans[len(line_system)-1])
+#ml.plot_signal(spectral_info_spans[len(line_system)-1])
 
 # 3. Use the transiever object to evaluate the GSNR and the OSNR of the
-# sectral information after each span.
+# spectral information after each span.
 
 # Transiever
 # a. Import transceiver from gnpy.core.elements
@@ -78,14 +80,23 @@ for j in range(0, len(line_system)-1):
     # c. receive the signals using the transceiver as a function which argument is
     # the spectral information
     Rx_signal._calc_snr(spectral_info_spans[j])
-    print(Rx_signal.osnr_ase[45])
+    print("OSNR ASE after j-th span: ", Rx_signal.osnr_ase[45])
     central_channel_OSNR[j] = Rx_signal.osnr_ase[45]
+
+# 4. Plot the GSNR and the OSNR evolution through the line, span by span,
+# for the channel 45
 
 plt.figure()
 plt.plot(range(9), central_channel_OSNR, '.b', label='line 1', linewidth=2)
-plt.ylabel('OSNR')
+plt.ylabel('OSNR [dB]')
 plt.xlabel('Span number')
 # plt.legend(['OSNR', 'ASE noise'])
-plt.title('OSNR - each span')
+plt.title('OSNR - after each span - channel 45')
 plt.grid()
+
+# 5. Plot the GSNR and the OSNR for each channel at the end of the line.
+
+Rx_signal._calc_snr(si)
+ml.plot_receiver(Rx_signal, si)
+
 plt.show()
