@@ -15,7 +15,7 @@ import utilities as ut
 
 params = {"gain_target": 12, "tilt_target": 0, "out_voa": 0}
 
-data = {"uid" : "amp_id", "type" : "Edfa", "type_variety" : "simple edfa", "operational" : params}
+data = {"uid" : "amp_id", "type": "Edfa", "type_variety": "simple edfa", "operational": params}
 
 # write json data into a file
 with open("Amp_Parameters2.json", "w") as write_file:
@@ -24,7 +24,8 @@ with open("Amp_Parameters2.json", "w") as write_file:
 
 # 4. instantiate an EDFA using the json file you just created.
 
-Edfa_par = ut.get_edfa_parameters("Amp_Parameters2.json","/Users/Tuna/PycharmProjects/OpenOptical/Lesson4/eqp2.json")
+Edfa_par = ut.get_edfa_parameters("Amp_Parameters2.json",
+                                  "/Users/Tuna/PycharmProjects/OpenOptical/Lesson_4-Amplifiers/eqp2.json")
 
 EDFA = gnel.Edfa(**Edfa_par)
 
@@ -53,7 +54,7 @@ central_channel_signal = np.zeros(9)
 central_channel_ASE = np.zeros(9)
 central_channel_OSNR = np.zeros(9)
 sweep_dB = np.arange(-2, 2.5, 0.5)
-print(sweep_dB)
+print('The power levels (in dB) are:', sweep_dB)
 
 # Transponder (for point 4)
 # 1 Import transceiver from gnpy.core.elements
@@ -84,22 +85,22 @@ for j in range(0,9):
 # point of the sweep.
 
 plt.figure()
-plt.plot(sweep_dB,central_channel_signal, 'b', sweep_dB, central_channel_ASE, 'r', label='line 1', linewidth=2)
+plt.plot(sweep_dB,central_channel_signal, 'ob', sweep_dB, central_channel_ASE, 'or', label='line 1', linewidth=2)
 plt.ylabel('Power [dBm]')
 plt.xlabel('Sweep dB')
 plt.legend(['Signal power', 'ASE noise'])
 plt.title('Output of EDFA - power sweep at the input')
 plt.grid()
-plt.show()
 
 # 4. plot the OSNR of the central channel for each point of the sweep.
 # Hint: use a transponder.
 
 plt.figure()
-plt.plot(sweep_dB, central_channel_OSNR, 'b', label='line 1', linewidth=2)
+plt.plot(sweep_dB, central_channel_OSNR, 'ob', label='line 1', linewidth=2)
 plt.ylabel('OSNR')
 plt.xlabel('Sweep dB')
 #plt.legend(['OSNR', 'ASE noise'])
 plt.title('OSNR - power sweep at the input')
 plt.grid()
+
 plt.show()

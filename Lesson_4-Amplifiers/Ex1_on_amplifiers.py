@@ -1,3 +1,4 @@
+# Open Optical Networks - The Amplifier
 # Exercise 1
 # Instantiate and use an EDFA.
 
@@ -12,7 +13,6 @@ import utilities as ut
 # 2. create a json file with the parameters of your EDFA. This json file has the
 # following parameters:
 
-
 params = {"gain_target": 17, "tilt_target": 0, "out_voa": 0}  # Exercise 2: "gain_target": 17
 
 data = {"uid" : "amp_id", "type" : "Edfa", "type_variety" : "simple edfa", "operational" : params}
@@ -24,7 +24,9 @@ with open("Amp_Parameters.json", "w") as write_file:
 
 # 4. instantiate an EDFA using the json file you just created.
 
-Edfa_par = ut.get_edfa_parameters("Amp_Parameters.json","/Users/Tuna/PycharmProjects/OpenOptical/Lesson4/eqp.json") # Exercise 2: ../eqp2.json"
+Edfa_par = ut.get_edfa_parameters("Amp_Parameters.json",
+                                  "/Users/Tuna/PycharmProjects/OpenOptical/Lesson_4-Amplifiers/eqp.json")
+# Exercise 2: ../eqp2.json"
 
 EDFA = gnel.Edfa(**Edfa_par)
 
@@ -41,7 +43,8 @@ with open("eqp.json", "r") as read_file:  # Exercise 2: ../eqp2.json"
 si_data = data['SI'][0]
 
 # Compute the WDM for the interested Spectral info
-si = gn.create_input_spectral_information(si_data['f_min'], si_data['f_max'], si_data['roll_off'], si_data['baud_rate'], 10**(si_data['power_dbm']/10)/1000, si_data['spacing'])
+si = gn.create_input_spectral_information(si_data['f_min'], si_data['f_max'], si_data['roll_off'], si_data['baud_rate'],
+                                          10**(si_data['power_dbm']/10)/1000, si_data['spacing'])
 
 # 6. propagate the WDM comb through the EDFA.
 # Hint: As Edfa has the method call (self, spectral info), it can be used
@@ -60,3 +63,4 @@ print(new_si)
 # 8. plot the signal-to-ASE noise ration (the OSNR) after the EDFA.
 
 ml.plot_OSNR(new_si)
+plt.show()

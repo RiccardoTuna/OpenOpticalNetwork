@@ -3,8 +3,7 @@ import gnpy.core.info as gn
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Exercise 2
-# Plot the spectral information
+# MY LIBRARY: functions to plot the output from the amps, transceiver etc.
 
 def plot_spectrum(si):
 
@@ -28,7 +27,6 @@ def plot_spectrum(si):
     plt.legend(['Signal power', 'ASE power', 'NLI power'])
     plt.title('Spectral info')
     plt.grid()
-    plt.show()
 
 
 def plot_receiver(receiver, si):
@@ -48,7 +46,6 @@ def plot_receiver(receiver, si):
     plt.legend(['SNR', 'OSNR ASE', 'OSNR NLI'])
     plt.title('Receiver')
     plt.grid()
-    plt.show()
 
 
 def plot_signal_ASE(si):
@@ -69,7 +66,6 @@ def plot_signal_ASE(si):
     plt.legend(['Signal power', 'ASE power'])
     plt.title('Spectral info')
     plt.grid()
-    plt.show()
 
 def plot_signal_NLI(si):
     freq = np.zeros(len(si.carriers))
@@ -89,7 +85,6 @@ def plot_signal_NLI(si):
     plt.legend(['Signal power', 'ASE power'])
     plt.title('Spectral info')
     plt.grid()
-    plt.show()
 
 def plot_signal(si):
 
@@ -107,7 +102,6 @@ def plot_signal(si):
     plt.legend(['Signal power'])
     plt.title('Spectral info')
     plt.grid()
-    plt.show()
 
 def plot_OSNR(si):
 
@@ -125,12 +119,11 @@ def plot_OSNR(si):
 
     plt.figure()
     plt.plot(freq, OSNR, '.b', label='line 1', linewidth=2)
-    plt.ylabel('Power [dBm]')
+    plt.ylabel('Signal-to-Noise Ratio [dB]')
     plt.xlabel('frequency [THz]')
     plt.legend(['OSNR'])
-    plt.title('Spectral info')
+    plt.title('Optical Signal to Noise Ratio with EDFA')
     plt.grid()
-    plt.show()
 
 def plot_SNR_NLI(si):
 
@@ -153,5 +146,4 @@ def plot_SNR_NLI(si):
     plt.legend(['SNR_nli'])
     plt.title('Spectral info')
     plt.grid()
-    plt.show()
 

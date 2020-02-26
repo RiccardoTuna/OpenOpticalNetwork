@@ -15,7 +15,7 @@ import utilities as ut
 
 params = {"gain_target": 12, "tilt_target": 0, "out_voa": 0}
 
-data = {"uid" : "amp_id", "type" : "Edfa", "type_variety" : "simple edfa", "operational" : params}
+data = {"uid": "amp_id", "type": "Edfa", "type_variety" : "simple edfa", "operational" : params}
 
 # write json data into a file
 with open("Amp_Parameters2.json", "w") as write_file:
@@ -24,7 +24,8 @@ with open("Amp_Parameters2.json", "w") as write_file:
 
 # 4. instantiate an EDFA using the json file you just created.
 
-Edfa_par = ut.get_edfa_parameters("Amp_Parameters2.json","/Users/Tuna/PycharmProjects/OpenOptical/Lesson4/eqp2.json")
+Edfa_par = ut.get_edfa_parameters("Amp_Parameters2.json",
+                                  "/Users/Tuna/PycharmProjects/OpenOptical/Lesson_4-Amplifiers/eqp2.json")
 
 EDFA = gnel.Edfa(**Edfa_par)
 
@@ -55,8 +56,9 @@ new_si = EDFA(si)
 # 7. plot the signal and ASE noise power before and after the propagation.
 
 ml.plot_signal_ASE(new_si)
-print(new_si)
+#print(new_si)
 
 # 8. plot the signal-to-ASE noise ration (the OSNR) after the EDFA.
 
 ml.plot_OSNR(new_si)
+plt.show()

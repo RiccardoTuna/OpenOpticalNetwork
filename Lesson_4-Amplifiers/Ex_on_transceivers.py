@@ -18,7 +18,8 @@ with open("eqp.json", "r") as read_file:
 si_data = data['SI'][0]
 
 # Compute the WDM for the interested Spectral info
-si = gn.create_input_spectral_information(si_data['f_min'], si_data['f_max'], si_data['roll_off'], si_data['baud_rate'], 10**(si_data['power_dbm']/10)/1000, si_data['spacing'])
+si = gn.create_input_spectral_information(si_data['f_min'], si_data['f_max'], si_data['roll_off'], si_data['baud_rate'],
+                                          10**(si_data['power_dbm']/10)/1000, si_data['spacing'])
 
 # plot the channels
 # ml.plot_spectrum(si)
@@ -52,7 +53,7 @@ ml.plot_spectrum(si)
 # 1 Import transceiver from gnpy.core.elements
 Receiver = gnel
 
-# 2 instantiate it calling the constructor with the argument (uid=’receiver’).
+# 2 instantiate it calling the constructor with the argument (uid=’receiver’)
 Rx_signal = Receiver.Transceiver('receiver')
 
 # 3 receive the signals using the transceiver as a function which argument is
@@ -63,3 +64,4 @@ Rx_signal._calc_snr(si)
 # them in the same graph.[x axis: frequency (THz) and y axis: (dB)]
 ml.plot_receiver(Rx_signal, si)
 
+plt.show()
