@@ -19,4 +19,3 @@ def plot_spectrum(si):
     plt.ylabel('Power [dBm]')
     plt.xlabel('frequency [THz]')
     plt.grid()
-    plt.show()
