@@ -3,7 +3,7 @@
     "type": "Edfa",
     "type_variety": "simple edfa",
     "operational": {
-        "gain_target": 16.0,
+        "gain_target": 24.0,
         "tilt_target": 0,
         "out_voa": 0
     }

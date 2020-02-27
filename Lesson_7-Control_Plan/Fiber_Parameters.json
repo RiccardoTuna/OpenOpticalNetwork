@@ -2,7 +2,7 @@
     "uid": "fiber_id",
     "params": {
         "length": 80,
-        "loss_coef": 0.2,
+        "loss_coef": 0.3,
         "length_units": "km",
         "con_in": 0,
         "att_in": 0,
