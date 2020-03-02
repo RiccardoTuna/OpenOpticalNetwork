@@ -71,7 +71,7 @@ for j in range(0,9):
 
     new_si = EDFA(si)
 
-    tmp = new_si.carriers[80]
+    tmp = new_si.carriers[45]
     central_channel_signal[j] = 10*np.log10(tmp.power.signal/0.001)
     central_channel_ASE[j] = 10*np.log10(tmp.power.ase/0.001)
 
@@ -79,7 +79,7 @@ for j in range(0,9):
     # the spectral information
     Rx_signal._calc_snr(new_si)
 
-    central_channel_OSNR[j] = Rx_signal.osnr_ase[80]
+    central_channel_OSNR[j] = Rx_signal.osnr_ase[45]
 
 # 3. plot the signal power, ASE noise power of the central channel for each
 # point of the sweep.
