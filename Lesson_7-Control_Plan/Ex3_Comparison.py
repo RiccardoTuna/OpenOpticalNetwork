@@ -28,7 +28,7 @@ loss = params["length"]*params["loss_coef"]
 
 params = {"gain_target": loss, "tilt_target": 0, "out_voa": 0}  # Exercise 2: "gain_target": 17
 
-data = {"uid" : "amp_id", "type" : "Edfa", "type_variety" : "simple edfa", "operational" : params}
+data = {"uid": "amp_id", "type": "Edfa", "type_variety": "simple edfa", "operational": params}
 
 # write json data into a file
 with open("Amp_Parameters.json", "w") as write_file:

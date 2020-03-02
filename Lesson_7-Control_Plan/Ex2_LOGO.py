@@ -52,7 +52,7 @@ line_system = [{}]*10
 tupla_i = dict()
 
 for i in range(0, num_span):
-    tupla_i = {"fiber":gnel.Fiber(**data), "edfa": gnel.Edfa(**Edfa_par)}
+    tupla_i = {"fiber": gnel.Fiber(**data), "edfa": gnel.Edfa(**Edfa_par)}
     line_system[i] = tupla_i
 
 # 6. Instantiate the spectral information according to eqpt.json file
@@ -132,7 +132,7 @@ n_NLI = (4/(27*np.pi)) * \
         np.log((np.power(np.pi, 2)/4) * (np.abs(Beta_2)*np.power(R_s, 2)/alpha) * np.power(N_ch, 2/K_s)) * \
         (1/(alpha*np.power(np.abs(Beta_2), 1))) * np.power(gamma, 2) * (1/np.power(R_s, 2))
 
-print('eta_NLI is', n_NLI)
+print('eta_NLI is: ', n_NLI)
 
 B_ch = R_s*1e12
 n_f_amp = 5.5  # noise figure
@@ -142,13 +142,13 @@ F_lin = 10**(F_dB/10)
 A = (np.power(10, loss_coef*L/10)-1)
 
 P_ase = h * f_0 * B_ch * F_lin * A
-print('P_ase is', P_ase)
+print('P_ase is: ', P_ase)
 
 P_opt = np.power(P_ase/(2 * n_NLI), 1/3)   # /1.8
-print(P_opt)
+print("Optimum power (in W): ", P_opt)
 
 P_opt_dBm = 10*np.log10(P_opt/1e-3)
-print(P_opt_dBm)
+print("Optimum power (in dBm): ", P_opt_dBm)
 
 # Compute the WDM for the interested Spectral info
 si = gn.create_input_spectral_information(si_data['f_min'], si_data['f_max'], si_data['roll_off'], si_data['baud_rate'], 10**(P_opt_dBm/10)/1000, si_data['spacing'])
