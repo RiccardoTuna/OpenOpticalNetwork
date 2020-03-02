@@ -86,7 +86,7 @@ def plot_signal_NLI(si):
     plt.plot(freq, signal_power, '.b', freq, nli_power, '.r', label='line 1', linewidth=2)
     plt.ylabel('Power [dBm]')
     plt.xlabel('frequency [THz]')
-    plt.legend(['Signal power', 'ASE power'])
+    plt.legend(['Signal power', 'NLI power'])
     plt.title('Spectral info')
     plt.grid()
 
